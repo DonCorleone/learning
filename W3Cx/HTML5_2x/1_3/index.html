@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTML 5.2x 1.2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <section id="all">
+        <button disabled id="buttonEnglish" onclick="loadTranscript('en');">
+            Display English transcript
+        </button>
+        <button disabled id="buttonDeutsch" onclick="loadTranscript('de');">
+            Display Deutsch transcript
+        </button>
+        </p>
+        <video id="myVideo" preload="metadata" controls crossOrigin="anonymous">
+            <source src="https://mainline.i3s.unice.fr/mooc/elephants-dream-medium.mp4" type="video/mp4">
+            <source src="https://mainline.i3s.unice.fr/mooc/elephants-dream-medium.webm" type="video/webm">
+            <track label="English subtitles" kind="subtitles" srclang="en" src="https://mainline.i3s.unice.fr/mooc/elephants-dream-subtitles-en.vtt">
+            <track label="Deutsch subtitles" kind="subtitles" srclang="de" src="https://mainline.i3s.unice.fr/mooc/elephants-dream-subtitles-de.vtt"
+                default>
+            <track label="English chapters" kind="chapters" srclang="en" src="https://mainline.i3s.unice.fr/mooc/elephants-dream-chapters-en.vtt">
+        </video>
+        <div id="transcript"></div>
+    </section>
+</body>
+
+</html>

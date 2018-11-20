@@ -1,0 +1,9 @@
+body{
+   background-color:rgb(34, 34, 34);
+}
+#myDiv{
+   position:absolute;
+   background-color:red;
+   color:white;
+   height:100px;
+}

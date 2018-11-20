@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <table id="myTable">
+        <caption>A typical HTML table</caption>
+        <tr>
+            <th scope="col">Given Name</th>
+            <th scope="col">Family Name</th>
+            <th scope="col">Age</th>
+        </tr>
+        <tr>
+            <td>Michel</td>
+            <td>Buffa</td>
+            <td>52</td>
+        </tr>
+        <tr>
+            <td>Dark</td>
+            <td>Vador</td>
+            <td>Unknown</td>
+        </tr>
+        <tr>
+            <td>Luke</td>
+            <td>Skywalker</td>
+            <td>Unknown</td>
+        </tr>
+    </table>
+    <p>Click to add a new row</p>
+    <button onclick="insertRow();">Add a new row</button>
+    <p>Click to delete the first row of the table</p>
+    <button onclick="deleteFirstRow();">Delete first row</button>
+</body>
+
+</html>
