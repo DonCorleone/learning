@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch FireFox against index.hml",
+            "name": "Launch Chrome against localhost",
             "file": "${workspaceFolder}/index.html"
         }
     ]

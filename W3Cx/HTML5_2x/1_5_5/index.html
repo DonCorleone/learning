@@ -14,11 +14,9 @@
     <h2>Equalizer made with the Web Audio API</h2>
 
     <div class="eq">
-        <audio id="player" controls crossorigin="anonymous" loop>
-            <source src="http://mainline.i3s.unice.fr/mooc/guitarRiff1.mp3">
-
-            Your browser does not support the audio tag.
-        </audio>
+        <video id="player" width="320" height="240" controls crossOrigin="anonymous">
+            <source src="http://mainline.i3s.unice.fr/mooc/elephants-dream-medium.mp4" >
+        </video>
         <div class="controls">
             <label>60Hz</label>
             <input type="range" value="0" step="1" min="-30" max="30" oninput="changeGain(this.value, 0);"></input>

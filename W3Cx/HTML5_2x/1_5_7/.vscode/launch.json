@@ -7,7 +7,8 @@
         {
             "type": "firefox",
             "request": "launch",
-            "name": "Launch FireFox against index.hml",
+            "reAttach": true,
+            "name": "Launch index.html",
             "file": "${workspaceFolder}/index.html"
         }
     ]
