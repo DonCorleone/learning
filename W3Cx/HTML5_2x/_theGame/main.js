@@ -9,6 +9,8 @@ var GF = function () {
     var ctx, canvas;
     var w, h;
 
+    var oldTime;
+
     // vars for handling inputs
     var inputStates = {};
 
@@ -35,15 +37,32 @@ var GF = function () {
         frameCount++;
     };
 
+
+    function timer(currentTime) {
+        var delta = currentTime - oldTime;
+        oldTime = currentTime;
+        return delta;
+    }
+    // The monster!
+    var rect = {
+        x: 10,
+        y: 10,
+        speed: 100 // pixels/s this time !
+    };
+
     var mainLoop = function (time) {
         //main function, called each frame 
         measureFPS(time);
+
+        delta = timer(time);
 
         // canvas part
         clearCanvas(ctx, w, h);
 
         // draw my rect
-        drawMyRect(10 + Math.random() * 10, 10 + Math.random() * 10);
+        drawMyRect(rect.x, rect.y);
+
+        updateRectPosition(delta);
 
         // check inputStates
         if (inputStates.left) {
@@ -156,6 +175,48 @@ var GF = function () {
 
         ctx.restore();
     }
+
+    function updateRectPosition(delta) {
+        rect.speedX = rect.speedY = 0;
+        // Checks inputStates
+        if (inputStates.left) {
+            ctx.fillText("left", 150, 20);
+            rect.speedX = -rect.speed;
+        }
+        if (inputStates.up) {
+            ctx.fillText("up", 150, 40);
+            rect.speedY = -rect.speed;
+        }
+        if (inputStates.right) {
+            ctx.fillText("right", 150, 60);
+            rect.speedX = rect.speed;
+        }
+        if (inputStates.down) {
+            ctx.fillText("down", 150, 80);
+            rect.speedY = rect.speed;
+        }
+        if (inputStates.space) {
+            ctx.fillText("space bar", 140, 100);
+        }
+        if (inputStates.mousePos) {
+            ctx.fillText("x = " + inputStates.mousePos.x + " y = " +
+                inputStates.mousePos.y, 5, 150);
+        }
+        if (inputStates.mousedown) {
+            ctx.fillText("mousedown b" + inputStates.mouseButton, 5, 180);
+            rect.speed = 5;
+        } else {
+            // Mouse up
+            rect.speed = 1;
+        }
+        rect.x += calcDistanceToMove(delta, rect.speedX);
+        rect.y += calcDistanceToMove(delta, rect.speedY);
+    }
+    var calcDistanceToMove = function (delta, speed) {
+        //console.log("#delta = " + delta + " speed = " + speed);
+        return (speed * delta) / 1000;
+    };
+
     //our GameFramework returns a public API visible from outside its scope
     return {
         start: start
