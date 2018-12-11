@@ -122,4 +122,3 @@ function Ball(x, y, angle, v, diameter) {
         if (cell !== null) {cell.innerHTML = this.angle;}
     }
 }
-
