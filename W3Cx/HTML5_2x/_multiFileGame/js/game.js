@@ -182,7 +182,7 @@ var GF = function () {
             if (circRectsOverlap(pacMan.x, pacMan.y, pacMan.width, pacMan.height, ball.x, ball.y, ball.radius)) {
                 //change the color of the ball
                 ball.color = 'red';
-                ball.dead = true;
+                pacMan.dead = true;
 
                 plopSound.play();
             }
