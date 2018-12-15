@@ -1,3 +1,7 @@
+body{
+    background-color: #1c1b1c;
+    color: #efeef0;
+}
 canvas{
-    border: 1px solid black;
+    border: 2px solid #efeef0;
 }

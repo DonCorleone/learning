@@ -48,32 +48,48 @@ var GF = function () {
 
         context.beginPath();
 
-        var startAngle = 0;
-        var endAngle = 2 * Math.PI;
+        var startAngle1 = 0;
+        var endAngle1 = 2 * Math.PI;
+        var startAngle2 = 0;
+        var endAngle2 = 0;
+
         var antiClockwise = pacMan.speedX < 0 || pacMan.speedY < 0;
 
-        if (pacMan.speedX > 0) {
-            startAngle = (2 * Math.PI) / 8 * 1;
-            endAngle = (2 * Math.PI) / 8 * 7;
-        } else if (pacMan.speedX < 0) {
-            startAngle = (2 * Math.PI) / 8 * 3;
-            endAngle = (2 * Math.PI) / 8 * 5;
+        if (Math.round(currentLevelTime/100) % 2) {
+            if (pacMan.speedX > 0) {
+                startAngle1 = (2 * Math.PI) / 8 * 1;
+                endAngle1 = (2 * Math.PI) / 8 * 5;
+                startAngle2 = (2 * Math.PI) / 8 * 3;
+                endAngle2 = (2 * Math.PI) / 8 * 7;
+            } else if (pacMan.speedX < 0) {
+                startAngle1 = (2 * Math.PI) / 8 * 5;
+                endAngle1 = (2 * Math.PI) / 8 * 1;
+                startAngle2 = (2 * Math.PI) / 8 * 3;
+                endAngle2 = (2 * Math.PI) / 8 * 7;
+            }
+    
+            if (pacMan.speedY > 0) {
+                startAngle1 = (2 * Math.PI) / 8 * 5;
+                endAngle1 = (2 * Math.PI) / 8 * 1;
+                startAngle2 = (2 * Math.PI) / 8 * 7;
+                endAngle2 = (2 * Math.PI) / 8 * 3;
+            } else if (pacMan.speedY < 0) {
+                startAngle1 = (2 * Math.PI) / 8 * 5;
+                endAngle1 = (2 * Math.PI) / 8 * 1;
+                startAngle2 = (2 * Math.PI) / 8 * 3;
+                endAngle2 = (2 * Math.PI) / 8 * 7;
+            }
         }
 
-        if (pacMan.speedY > 0) {
-            startAngle = (2 * Math.PI) / 8 * 3;
-            endAngle = (2 * Math.PI) / 8 * 1;
-        } else if (pacMan.speedY < 0) {
-            startAngle = (2 * Math.PI) / 8 * 5;
-            endAngle = (2 * Math.PI) / 8 * 7;
-        }
+        context.fillStyle='#efeef0';
+        
+        context.arc(0, 0, pacMan.radius * 2, startAngle1, endAngle1, pacMan.speedY < 0, pacMan.speedY < 0);
+        context.fill();
+        context.beginPath();
+        context.arc(0, 0, pacMan.radius * 2, startAngle2, endAngle2, pacMan.speedY > 0 || pacMan.speedX < 0 || pacMan.speedY < 0);
+        context.fill();
 
-
-        context.arc(0, 0, pacMan.radius * 2, startAngle, endAngle, antiClockwise);
-        console.log(pacMan.speedX + " " + pacMan.speedY);
-
-        context.stroke();
-
+        console.log(Math.round(currentLevelTime/100));
         context.restore();
     }
 
@@ -121,6 +137,7 @@ var GF = function () {
 
             case gameStates.gameOver:
 
+                context.fillStyle='mediumorchid';
                 context.fillText("GAME OVER", 50, 100);
                 context.fillText("Press SPACE to start again", 50, 150);
                 context.fillText("Move with arrow keys", 50, 200);
@@ -206,7 +223,7 @@ var GF = function () {
             // Test collission with PacMan
             if (circleCollide(pacMan.x, pacMan.y, pacMan.radius, ball.x, ball.y, ball.radius)) {
                 //change the color of the ball
-                ball.color = 'red';
+                ball.color = 'firebrick';
                 pacMan.dead = true;
 
                 // plopSound.play();
@@ -250,7 +267,7 @@ var GF = function () {
 
     function displayScore() {
         context.save();
-        context.fillStyle = 'Green';
+        context.fillStyle = 'greenyellow';
         context.fillText("Level: " + currentLevel, 300, 30);
         context.fillText("Time: " + (currentLevelTime / 1000).toFixed(1), 300, 60);
         context.fillText("Balls: " + nbBalls, 300, 90);

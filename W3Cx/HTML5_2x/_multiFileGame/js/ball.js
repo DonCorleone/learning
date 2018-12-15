@@ -5,7 +5,7 @@ function Ball(x, y, angle, v, diameter) {
     this.angle = angle;
     this.v = v;
     this.radius = diameter / 2;
-    this.color = 'black';
+    this.color = 'deepskyblue';
 
 
     this.move = function () {
@@ -26,7 +26,5 @@ function Ball(x, y, angle, v, diameter) {
         context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         context.fill();
         context.restore();
-
-        this.color = 'black';
     }
 }
