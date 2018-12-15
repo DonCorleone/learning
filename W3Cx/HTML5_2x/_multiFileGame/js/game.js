@@ -28,8 +28,7 @@ var GF = function () {
         dead: false,
         x: 10,
         y: 10,
-        width: 50,
-        height: 50,
+        radius: 25,
         speed: 100 // pixels/s this time !
     };
 
@@ -41,13 +40,39 @@ var GF = function () {
         context.clearRect(0, 0, w, h);
     }
 
-    function drawMyPacMan(x, y) {
+    var drawMyPacMan = function (x, y) {
         context.save();
 
         context.translate(x, y);
         context.scale(0.5, 0.5);
 
-        context.strokeRect(0, 0, 100, 100);
+        context.beginPath();
+
+        var startAngle = 0;
+        var endAngle = 2 * Math.PI;
+        var antiClockwise = pacMan.speedX < 0 || pacMan.speedY < 0;
+
+        if (pacMan.speedX > 0) {
+            startAngle = (2 * Math.PI) / 8 * 1;
+            endAngle = (2 * Math.PI) / 8 * 7;
+        } else if (pacMan.speedX < 0) {
+            startAngle = (2 * Math.PI) / 8 * 3;
+            endAngle = (2 * Math.PI) / 8 * 5;
+        }
+
+        if (pacMan.speedY > 0) {
+            startAngle = (2 * Math.PI) / 8 * 3;
+            endAngle = (2 * Math.PI) / 8 * 1;
+        } else if (pacMan.speedY < 0) {
+            startAngle = (2 * Math.PI) / 8 * 5;
+            endAngle = (2 * Math.PI) / 8 * 7;
+        }
+
+
+        context.arc(0, 0, pacMan.radius * 2, startAngle, endAngle, antiClockwise);
+        console.log(pacMan.speedX + " " + pacMan.speedY);
+
+        context.stroke();
 
         context.restore();
     }
@@ -73,7 +98,7 @@ var GF = function () {
             case gameStates.gameRunning:
 
                 // draw the PacMan
-                drawMyPacMan(pacMan.x, pacMan.y);
+                var x = drawMyPacMan(pacMan.x, pacMan.y);
 
                 // move the PacMan
                 updatePacManPosition(delta);
@@ -157,9 +182,9 @@ var GF = function () {
 
             // Do not create a ball on the player. We augmented the ball radius 
             // to sure the ball is created far from the PacMan. 
-            if (!circRectsOverlap(
+            if (!circleCollide(
                 pacMan.x, pacMan.y,
-                pacMan.width, pacMan.height,
+                pacMan.radius,
                 ball.x, ball.y, ball.radius * 3)) {
 
                 ballArray.push(ball);
@@ -179,12 +204,12 @@ var GF = function () {
             testCollisionWithWalls(ball, w, h);
 
             // Test collission with PacMan
-            if (circRectsOverlap(pacMan.x, pacMan.y, pacMan.width, pacMan.height, ball.x, ball.y, ball.radius)) {
+            if (circleCollide(pacMan.x, pacMan.y, pacMan.radius, ball.x, ball.y, ball.radius)) {
                 //change the color of the ball
                 ball.color = 'red';
                 pacMan.dead = true;
 
-                plopSound.play();
+                // plopSound.play();
             }
 
             ball.draw(context);
@@ -238,17 +263,17 @@ var GF = function () {
 
         // simple example that loads a sound and then calls the callback. We used the howler.js WebAudio lib here.
         // Load sounds asynchronously using howler.js
-        plopSound = new Howl({
-            urls: ['http://mainline.i3s.unice.fr/mooc/plop.mp3'],
-            autoplay: false,
-            volume: 1,
-            onload: function () {
-                console.log("all sounds loaded");
-                // We're done!
-                callback();
-            }
+        // plopSound = new Howl({
+        //     urls: ['http://mainline.i3s.unice.fr/mooc/plop.mp3'],
+        //     autoplay: false,
+        //     volume: 1,
+        //     onload: function () {
+        console.log("all sounds loaded");
+        // We're done!
+        callback();
+        //     }
 
-        })
+        // })
     }
 
     var start = function () {

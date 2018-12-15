@@ -17,6 +17,20 @@ function circRectsOverlap(x0, y0, w0, h0, cx, cy, r) {
 
     return (((cx - testX) * (cx - testX) + (cy - testY) * (cy - testY)) < r * r);
 }
+
+function circleCollideNonOptimised(x1, y1, r1, x2, y2, r2) {
+    var dx = x1 - x2;
+    var dy = y1 - y2;
+    var distance = Math.sqrt(dx * dx + dy * dy);
+    return (distance < r1 + r2);
+}
+
+function circleCollide(x1, y1, r1, x2, y2, r2) {
+    var dx = x1 - x2;
+    var dy = y1 - y2;
+    return ((dx * dx + dy * dy) < (r1 + r2) * (r1 + r2));
+}
+
 function testCollisionWithWalls(ball, w, h) {
     // left
     if (ball.x < ball.radius) {
