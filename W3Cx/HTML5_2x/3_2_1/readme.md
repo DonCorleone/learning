@@ -13,8 +13,25 @@ HTML
  </button>
 ```
 
+```html
+   <progress id="downloadProgress" value = 0></progress>
+```
+
 JAVASCRIPT
 
 ```JavaScript
     xhr.responseType = 'arraybuffer'; // THIS IS NEW WITH HTML5!
+```
+
+```javascript
+var progress = document.querySelector('#downloadProgress');
+ 
+function downloadSoundFile(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+ 
+  ...
+  xhr.onprogress = function(e) {
+    progress.value = e.loaded;
+    progress.max = e.total;
 ```

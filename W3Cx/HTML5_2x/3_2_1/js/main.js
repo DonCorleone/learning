@@ -42,10 +42,18 @@ function initSound(audioFile) {
 }
 
 function downloadSoundFile(url) {
+
+    var progress = document.querySelector('#downloadProgress');
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
 
     xhr.responseType = 'arraybuffer';
+
+    xhr.onprogress = function (param) {
+        progress.value = param.loaded;
+        progress.max = param.total;
+    }
+
     xhr.onload = function (data) {
 
         console.log("Song downloaded, decoding...");
