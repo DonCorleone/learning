@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Drag and drop images or any HTML element within a document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <img src="https://mainline.i3s.unice.fr/mooc/ABiBCwZ.png" id="cr" ondragstart="dragHandler(this, event);">
+    <img src="https://mainline.i3s.unice.fr/mooc/n7xo93U.png" id="ff" ondragstart="dragHandler(this, event);">
+    <img src="https://mainline.i3s.unice.fr/mooc/ugUmuGQ.png" id="ie" ondragstart="dragHandler(this, event);">
+    <img src="https://mainline.i3s.unice.fr/mooc/jfrNErz.png" id="op" ondragstart="dragHandler(this, event);">
+    <img src="https://mainline.i3s.unice.fr/mooc/gDJCG0l.png" id="sf" ondragstart="dragHandler(this, event);">
+    <br>
+    <div class="box" ondragover="return false;" ondrop="dropHandler(this, event);">
+        <p>good browsers</p>
+    </div>
+
+    <div class="box" ondragover="return false;" ondrop="dropHandler(this, event);">
+        <p>bad browsers</p>
+    </div>
+</body>
+</html>
