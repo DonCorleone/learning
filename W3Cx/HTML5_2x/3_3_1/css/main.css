@@ -1,0 +1,20 @@
+#dropZone {
+    width: 100px;
+    height: 100px;
+}
+
+input::after {
+    color: red;
+    content: attr(data-myvaluename) '/' attr(max);
+    position: relative;
+    left: 100px;
+    top: -15px;
+}
+
+.dragged {
+    border: 1px solid salmon;
+    background-color: lightsalmon;
+ }
+ .draggedOver {
+    border: 1px dashed salmon;
+ }
