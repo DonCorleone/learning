@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,18 +8,9 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="js/main.js"></script>
 </head>
-
 <body onload=init();>
-    <input type="file" id="fileInput" multiple />
-    <br />
-    <div id="dropZone" ondragenter="dragEnterHandler(this, event);" ondragover="dragOverHandler(this,event);"
-        ondragleave="dragLeaveHandler(this,event);" ondrop="dropHandler(this,event);">
-
-        <ol id="droppedFiles"></ol>
-    </div>
-
-    <br />
+    <input type="file" id="fileInput" multiple/>
+    <br/>
     <output id="imageList"></output>
 </body>
-
 </html>
