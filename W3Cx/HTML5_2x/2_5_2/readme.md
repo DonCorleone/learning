@@ -1,6 +1,6 @@
 # Collission Detection Pool Balls
 
-[JSBin](https://jsbin.com/vaqifokupi/edit?js,output)  
+[JSBin / CodePen](https://jsbin.com/vaqifokupi/edit?js,output)  
 [W3Cx+HTML5.2x](https://courses.edx.org/courses/course-v1:W3Cx+HTML5.2x+3T2018/courseware/403b445abed54b2ba00322290f1684c7/3cce09df94d24a7a9e038680cae751f9/1?activate_block_id=block-v1%3AW3Cx%2BHTML5.2x%2B3T2018%2Btype%40vertical%2Bblock%406462ee62332946d38f051ef853f08c36)  
 
 ## watchout for

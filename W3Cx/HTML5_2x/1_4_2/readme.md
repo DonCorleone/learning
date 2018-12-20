@@ -1,4 +1,4 @@
-[JSBin](https://jsbin.com/gucutiyoyu/2/edit?html,css,js,output)  
+[JSBin / CodePen](https://jsbin.com/gucutiyoyu/2/edit?html,css,js,output)  
 [W3Cx+HTML5.2x](https://courses.edx.org/courses/course-v1:W3Cx+HTML5.2x+3T2018/courseware/dc6fe6f5d28f49b5a753ba6b49820849/b48b0d1504864633b862ef7306f4258b/?child=first)
 
 **watchout for**
