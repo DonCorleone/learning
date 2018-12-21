@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dragging files "out" from the browser to the desktop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!--MIME type:filename:URL of source file-->
+    <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Monica_Bellucci_San_Sebasti%C3%A1n.jpg/500px-Monica_Bellucci_San_Sebasti%C3%A1n.jpg" 
+    draggable="true" 
+    ondragstart="event.dataTransfer.setData('DownloadURL','image/jpg:monica.jpg:https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Monica_Bellucci_San_Sebasti%C3%A1n.jpg/500px-Monica_Bellucci_San_Sebasti%C3%A1n.jpg');"
+    onclick="return false"
+    >
+    I'm a link to Michel Buffa's picture, drag me to the desktop!
+</body>
+</html>
