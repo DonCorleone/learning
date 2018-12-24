@@ -263,3 +263,60 @@ function listAllCustomers(){
         }
     }
 }
+
+function getLeylaByName() {
+    
+    if (db === null || db === undefined) {
+        alert('DB Offline');
+        return;
+    }
+
+    var transaction = db.transaction(["customers"]);
+
+    transaction.oncomplete = function(event){
+        alert("Tutto bene!");
+    }
+
+    transaction.onerror = function(event){
+        alert("No Good");
+    }
+
+    var objectStore = transaction.objectStore("customers");
+
+    var index = objectStore.index("name");
+
+    index.get("LEYLA").onsuccess = function(event){
+        alert("found Bill:" + event.target.result.name + " " + event.target.result.email);
+    }
+}
+
+
+function getAllCustomersByName() {
+    if (db === null || db === undefined) {
+        alert('DB Offline');
+        return;
+    }
+
+    var transaction = db.transaction(["customers"]);
+
+    transaction.oncomplete = function(event){
+        alert("Tutto bene!");
+    }
+
+    transaction.onerror = function(event){
+        alert("No Good");
+    }
+
+    var objectStore = transaction.objectStore("customers");
+    var index = objectStore.index("name");
+
+    var keyRange = IDBKeyRange.only("LEYLA");
+    index.openCursor(keyRange).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            alert("Found Leyla " + cursor.value.email);    
+
+            cursor.continue();        
+        }
+    }
+}
