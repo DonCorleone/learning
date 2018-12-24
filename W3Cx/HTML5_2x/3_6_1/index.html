@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Using IndexedDB: creating and deleting a database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <button onclick="createDatabase();">Create CustomerDB database</button>
+    <button onclick="addACustomer();">Add a new Customer</button>
+    <br />
+    <br />
+    <fieldset>
+        SSN: <input type="text" id="ssn" placeholder="444-44-4444" required /><br>
+        Name: <input type="text" id="name" /><br>
+        Age: <input type="number" id="age" min="1" max="100" /><br>
+        Email: <input type="email" id="email" /> reminder, email must be unique (we declared it as a "unique" index)<br>
+    </fieldset>
+
+    <button onclick="addACustomerFromForm();">Add a new Customer</button>
+    <button onclick="updateACustomer();">Update data about an existing Customer</button>
+    <br />
+    <br />
+    <button onclick="removeACustomer();">Remove customer ssn=444-44-4444 (Bill)</button>
+    <br />
+    <br />
+    <button onclick="searchACustomer();">Search customer (enter ssn in the form)</button>
+    <br />
+    <br /> 
+    <button onclick="listAllCustomers();">List all</button>
+    <br />
+</body>
+
+</html>
