@@ -8,7 +8,12 @@
 HTML
 
 ```html
-
+</head>
+<template id="mytemplate">
+    <img src="" alt="alt">
+    <div class="comment">hello</div>
+</template>
+<body>
 ```
 
 CSS
@@ -17,8 +22,13 @@ CSS
 
 ```
 
-JAVASCRIPT
+JAVASCRIPT  
 
+template.content
 ```JavaScript
-
+var t = document.querySelector('#mytemplate');
+// Populate the src at runtime.
+t.content.querySelector('img').src = 'http://webcomponents.github.io/img/logo.svg';
+// Clone the template, sort of "instantiation"!
+var clone = document.importNode(t.content, true);
 ```
