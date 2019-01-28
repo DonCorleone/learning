@@ -1,0 +1,14 @@
+/Users/dev/Documents/learn/Microsoft/DEV208x/bin/Debug/netcoreapp2.1/DEV208x.deps.json
+/Users/dev/Documents/learn/Microsoft/DEV208x/bin/Debug/netcoreapp2.1/DEV208x.runtimeconfig.json
+/Users/dev/Documents/learn/Microsoft/DEV208x/bin/Debug/netcoreapp2.1/DEV208x.runtimeconfig.dev.json
+/Users/dev/Documents/learn/Microsoft/DEV208x/bin/Debug/netcoreapp2.1/DEV208x.dll
+/Users/dev/Documents/learn/Microsoft/DEV208x/bin/Debug/netcoreapp2.1/DEV208x.pdb
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.csprojAssemblyReference.cache
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.csproj.CoreCompileInputs.cache
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.RazorAssemblyInfo.cache
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.RazorAssemblyInfo.cs
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.AssemblyInfoInputs.cache
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.AssemblyInfo.cs
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.RazorTargetAssemblyInfo.cache
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.dll
+/Users/dev/Documents/learn/Microsoft/DEV208x/obj/Debug/netcoreapp2.1/DEV208x.pdb

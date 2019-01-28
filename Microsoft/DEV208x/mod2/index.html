@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Triggering events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        .hidden { display: none; }
+    </style>
+    <button type="button" id="add-line">Add new line</button>
+    <div id="container">
+        <div class="user-entry">
+            <label>Email:</label>
+            <input type="email" />
+            <label>Password:</label>
+            <input type="password" />
+        </div>
+    </div>
+    <form>
+        <div>
+            <label>Name:</label>
+            <input type="text" />
+        </div>
+        <button type="button" id="show-additional-information">
+            Show additional information
+        </button>
+        <div id="additional-information" class="hidden">
+            <label>Additional information:</label>
+            <input type="text" />
+        </div>
+    </form>
+    <button type="button" class="clicker" id="first">First button</button>
+    <button type="button" class="clicker" id="Second">Second button</button>
+    <button type="button" class="clicker" id="trigger">trigger</button>
+    <button type="button" class="clicker" id="trigger-handler">triggerHandler</button>
+
+    <br />
+    <br />
+    <div id="toggle" style="border: 1px solid black">Show or Hide</div>
+    <button class="btn-toggle">Böttön</button>
+
+    <br />
+    <br />
+
+    <button id="coordinateBtn">Coordinates</button>
+    <div id="output"></div>
+
+    <br />
+    <br />
+    <form>
+        <div>
+            <label for="name">nome</label>
+            <input type="text" class="form-control" id="name" />
+            <span class="help" hidden="hidden">type your name hoshi</span>
+        </div>
+        <div>
+            <label for="mail">mail</label>
+            <input type="text" class="form-control" id="mail" />
+            <span class="help" hidden="hidden">type your mail hoshi</span>
+        </div>
+        <div id="value"></div>
+    </form>
+
+    <br />
+
+    <div id="hooverboard" style="border:1px solid black">HOOOOVER</div>
+    <div id="hoovertext"> </div>
+    <script>
+
+        $(function () {
+
+            $('#hooverboard').hover(function () {
+                // mouseenter
+                $('#hoovertext').text('YAY');
+                var style = {
+                    color: 'red',
+                    backgroundColor: 'yellow'
+                };
+
+                $(this).css(style);
+            }, function () {
+                // mouseout
+                $('#hoovertext').text('');
+
+                $(this).removeAttr('color');
+              //  $(this).removeAttr('background-Color');
+            });
+
+            $('input[type="text"]')
+                .focus(function () {
+                    $(this).next('span.help').removeAttr('hidden');
+                })
+                .blur(function (e) {
+                    $('span.help').attr('hidden', 'hidden');
+                    $('#value').html('<strong>' + $(this).val() + '</strong>');
+                });
+            $('.clicker').click(function () {
+                // display the id of the button
+                alert(this.id);
+            });
+
+            $('#trigger').click(function () {
+                // Would alert every button's id
+                // including the last two
+                $('.clicker').trigger('click');
+            });
+
+            // Would alert "first"
+            $('#trigger-handler').click(function () {
+                // Would alert "first"
+                $('.clicker').triggerHandler('click');
+            });
+
+            $('.btn-toggle').click(function () {
+                $('#toggle').slideToggle(1000);
+            });
+
+            $('#show-additional-information').click(function () {
+                $('#additional-information').show(750);
+            });
+
+            $('#coordinateBtn').click(function (e) {
+                $('#output').text(e.pageX + ' : ' + e.pageY);
+            })
+
+            $('#container').on('click', '.user-entry', function (){alert('delegated')});
+        });
+    </script>
+</body>
+
+</html>
