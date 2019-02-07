@@ -24,6 +24,14 @@ $(document).ready(function(){
         target.addClass('rating-chosen');
         target.prevAll('.rating-circle').addClass('rating-chosen');
     });
+
+    $(document).ajaxSend(function () {
+        // disable all buttons
+        $('button').attr('disabled', 'disabled');
+    }).ajaxComplete(function () {
+        // enable all buttons
+        $('button').removeAttr('disabled');
+    });
     
     // onClick on button
     $('#update-max-value').click(function () {
@@ -43,6 +51,31 @@ $(document).ready(function(){
 
         refreshCircles();
     });
+
+    // Click Handler for Save-Button
+    $('#save-rating').click(function(){
+
+        // Init Counter
+        var counter = 0;
+
+        // count each with class 'rating-chosen'
+        $('.rating-chosen').each(element => {
+            counter ++;
+        });
+
+        // create JSON Object
+        var rating = {
+            value: counter, 
+            maxValue: $('#rating-container').attr('max-value')
+        }
+
+        // send to API
+        $.post('http://jquery-edx.azurewebsites.net/api/Rating', rating, function(data){
+
+            // display response
+            $('#output').text(data.message);
+        })
+    })
 
     // Init circles for the first time.
     refreshCircles();

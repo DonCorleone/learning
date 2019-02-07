@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mod 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+
+<body>
+    <h1>Contoso Web Developer Conference</h1>
+    <h2>Finding elements using jQuery</h2>
+    <div>This session is about identifying elements using jQuery methods and selectors.</div>
+    <h3>Rate this session</h3>
+    <div id="rating-container" max-value="5"></div>
+
+    <div>
+        <label for="max-value">Enter max value:</label>
+        <input type="text" id="max-value" />
+        <button type="button" id="update-max-value">Update max value</button>
+    </div>
+
+    <script>
+        $(document).ready(makeCircles);
+        var max = 5;
+
+        function makeCircles() {
+            i = 0;
+            while (i < max) {
+                $("#rating-container").append("<div class='rating-circle'></div>");
+                i++;
+            }
+        }
+        $("#update-max-value").click(function () {
+            max = $("#max-value").val();
+            $("#rating-container").empty();
+            makeCircles();
+        })
+        $("#rating-container").on("mouseenter", ".rating-circle", function () {
+            $(this).prevAll().andSelf().addClass("rating-hover")
+        }).on("mouseleave", ".rating-circle", function () {
+            $(this).prevAll().andSelf().removeClass("rating-hover");
+        });
+        $("#rating-container").on("click", ".rating-circle", function () {
+            $(".rating-circle").removeClass("rating-chosen");
+            $(this).prevAll().andSelf().addClass("rating-chosen");
+        })
+    </script>
+</body>
+
+</html>
