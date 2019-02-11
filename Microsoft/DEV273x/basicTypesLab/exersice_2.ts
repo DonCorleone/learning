@@ -15,8 +15,15 @@ interface ElementSet{
 }
 
 let elementsSet : Array<ElementSet> = [];
-let squareSizeNum2: number = 100;
 
+for (let index: number = 0; index < 4; index++) {
+    elementsSet.push({
+        'div': document.createElement('div'),
+        'button': document.createElement('button')
+    });
+}
+
+let squareSizeNum2: number = 100;
 let squareSize2: string = `${ squareSizeNum2 }px`
 
 enum Colors{
@@ -26,12 +33,6 @@ enum Colors{
     black
 }
 
-for (let index: number = 0; index < 4; index++) {
-    elementsSet.push({
-        'div': document.createElement('div'),
-        'button': document.createElement('button')
-    });
-}
 elementsSet.map((elem, index) => {
     let colorChangeClass = new colorChange(elem.div);
 
@@ -44,9 +45,3 @@ elementsSet.map((elem, index) => {
     document.body.appendChild(elem.button);
     document.body.appendChild(elem.div);
 });
-
-
-let Elements = {
-    'div': document.createElement('div'),
-    'button': document.createElement('button')
-}

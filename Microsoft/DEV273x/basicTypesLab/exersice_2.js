@@ -9,6 +9,12 @@ var colorChange = /** @class */ (function () {
     return colorChange;
 }());
 var elementsSet = [];
+for (var index = 0; index < 4; index++) {
+    elementsSet.push({
+        'div': document.createElement('div'),
+        'button': document.createElement('button')
+    });
+}
 var squareSizeNum2 = 100;
 var squareSize2 = squareSizeNum2 + "px";
 var Colors;
@@ -18,12 +24,6 @@ var Colors;
     Colors[Colors["yellow"] = 2] = "yellow";
     Colors[Colors["black"] = 3] = "black";
 })(Colors || (Colors = {}));
-for (var index = 0; index < 4; index++) {
-    elementsSet.push({
-        'div': document.createElement('div'),
-        'button': document.createElement('button')
-    });
-}
 elementsSet.map(function (elem, index) {
     var colorChangeClass = new colorChange(elem.div);
     elem.div.style.width = squareSize2;
@@ -35,7 +35,3 @@ elementsSet.map(function (elem, index) {
     document.body.appendChild(elem.button);
     document.body.appendChild(elem.div);
 });
-var Elements = {
-    'div': document.createElement('div'),
-    'button': document.createElement('button')
-};
