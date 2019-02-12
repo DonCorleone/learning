@@ -1,16 +1,19 @@
-var colorChange = /** @class */ (function () {
-    function colorChange(div) {
+var colorChanger = /** @class */ (function () {
+    function colorChanger(div) {
         this.div = div;
     }
-    colorChange.prototype.changeColor = function (color) {
+    colorChanger.prototype.changeColor = function (color) {
+        if (typeof (color) === "number") {
+            return true;
+        }
         this.div.style.backgroundColor = color;
         return true;
     };
-    return colorChange;
+    return colorChanger;
 }());
-var elementsSet = [];
+var setOfElements = [];
 for (var index = 0; index < 4; index++) {
-    elementsSet.push({
+    setOfElements.push({
         'div': document.createElement('div'),
         'button': document.createElement('button')
     });
@@ -24,11 +27,11 @@ var Colors;
     Colors[Colors["yellow"] = 2] = "yellow";
     Colors[Colors["black"] = 3] = "black";
 })(Colors || (Colors = {}));
-elementsSet.map(function (elem, index) {
-    var colorChangeClass = new colorChange(elem.div);
+setOfElements.map(function (elem, index) {
+    var colorChangeClass = new colorChanger(elem.div);
     elem.div.style.width = squareSize2;
     elem.div.style.height = squareSize2;
-    elem.button.textContent = 'Changez';
+    elem.button.textContent = 'Change';
     elem.button.onclick = function (event) {
         colorChangeClass.changeColor(Colors[index]);
     };

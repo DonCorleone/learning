@@ -1,23 +1,26 @@
-class colorChange {
+class colorChanger {
     div: Element;
     constructor(div: Element) {
         this.div = div;
     }
-    changeColor(color:string) : boolean{
+    changeColor(color:string | number) : boolean{
+        if (typeof(color) === "number") {
+            return true;
+        }
         (this.div as HTMLElement).style.backgroundColor = color;
         return true;
     }
 }
 
-interface ElementSet{
+interface SetOfElements{
     'div': Element,
     'button': Element
 }
 
-let elementsSet : Array<ElementSet> = [];
+let setOfElements : Array<SetOfElements> = [];
 
 for (let index: number = 0; index < 4; index++) {
-    elementsSet.push({
+    setOfElements.push({
         'div': document.createElement('div'),
         'button': document.createElement('button')
     });
@@ -30,15 +33,15 @@ enum Colors{
     red,
     blue,
     yellow,
-    black
+    black   
 }
 
-elementsSet.map((elem, index) => {
-    let colorChangeClass = new colorChange(elem.div);
+setOfElements.map((elem, index) => {
+    let colorChangeClass = new colorChanger(elem.div);
 
     (elem.div as HTMLElement).style.width = squareSize2;
     (elem.div as HTMLElement).style.height = squareSize2;
-    elem.button.textContent = 'Changez';
+    elem.button.textContent = 'Change';
     (elem.button as HTMLElement).onclick = (event) => {
         colorChangeClass.changeColor(Colors[index]);
     }
