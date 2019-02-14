@@ -1,0 +1,23 @@
+.btn-primary {
+    background: #8DC63F;
+    fore-color: white;
+    border-color: #8DC63F;
+}
+
+@media (min-width: 48em) {
+    .btn-primary {
+        padding: 20px 20px;
+        font-weight: normal;
+        font-size: 1.125em;
+    }
+}
+
+.btn-primary:hover {
+    background: none;
+    border-color: white;
+    text-decoration: none;
+}
+
+.btn-nav {
+    color: white;
+}
