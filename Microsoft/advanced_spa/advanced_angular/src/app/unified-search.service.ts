@@ -5,6 +5,8 @@ import { GitSearch } from './git-search';
 import { GitCodeSearchService } from './git-code-search.service';
 import { GitCodeSearch} from './git-code-search';
 import { forkJoin } from 'rxjs/observable/forkJoin';
+import { concat } from 'rxjs/observable/concat';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
@@ -14,7 +16,7 @@ export class UnifiedSearchService {
   constructor(private searchService: GitSearchService, private codeSearchService: GitCodeSearchService) { }
 
   unifiedSearch: Function = (query: string): Observable<UnifiedSearch> => {
-    return forkJoin(this.searchService.gitSearch(query), this.codeSearchService.codeSearch(query))
+    return forkJoin(this.codeSearchService.codeSearch(query), this.searchService.gitSearch(query))
     .map( (response : [GitSearch, GitCodeSearch]) => {
         return {
           'repositories': response[0],
