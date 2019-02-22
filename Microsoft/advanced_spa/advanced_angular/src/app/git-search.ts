@@ -1,4 +1,4 @@
-export interface GitSearch {
+export interface GitSearch2 {
   "total_count": number,
   "incomplete_results": boolean,
   "items": Array<
@@ -92,5 +92,5 @@ export interface GitSearch {
       "default_branch": string,
       "score": number
     }
-   >
+  >
 }

@@ -1,7 +1,7 @@
+
 export interface Owner {
     login: string;
     id: number;
-    node_id: string;
     avatar_url: string;
     gravatar_id: string;
     url: string;
@@ -21,7 +21,6 @@ export interface Owner {
 
 export interface Repository {
     id: number;
-    node_id: string;
     name: string;
     full_name: string;
     owner: Owner;
