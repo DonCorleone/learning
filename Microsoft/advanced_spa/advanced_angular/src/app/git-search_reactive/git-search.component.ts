@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GitSearchService } from '../git-search.service'
-import { GitSearch } from '../git-search'
+import { GitSearch2 } from '../git-search'
 import { ActivatedRoute, ParamMap, Router } from '@angular/router'
 import { AdvancedSearchModel } from '../advanced-search-model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./git-search.component.css']
 })
 export class GitSearchComponent implements OnInit {
-  searchResults: GitSearch;
+  searchResults: GitSearch2;
   searchQuery: string;
   displayQuery: string;
   title: string;

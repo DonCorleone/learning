@@ -1,12 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { GitSearch } from './git-search';
+import { GitSearch2 } from './git-search';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class GitSearchService {
   cachedValues: Array<{
-      [query: string]: GitSearch
+      [query: string]: GitSearch2
   }> = [];
   constructor(@Inject(Http) private http: Http) {
   }

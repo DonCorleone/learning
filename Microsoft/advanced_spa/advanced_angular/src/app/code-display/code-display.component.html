@@ -6,6 +6,8 @@
       <small> by {{result.owner.login | uppercase}}</small>
     </h4>
   </a>
+  <span class='favorite_icon' *ngIf="!result.favorited">&&#9975;</span>
+  <span class='favorite_icon favorited' *ngIf="result.favorited">&#9975;</span>
   <p class="description"> {{result.description}}</p>
   <p> Path: {{result.path}} </p>
 </li>

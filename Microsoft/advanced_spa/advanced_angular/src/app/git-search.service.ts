@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { GitSearch } from './git-search';
+import { GitSearch2 } from './git-search';
 import { GitUsers } from './git-users';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,7 @@ import { GitSearchComponent } from './git-search/git-search.component';
 @Injectable()
 export class GitSearchService {
     cachedValue: string;
-    search: Observable<GitSearch>;
+    search: Observable<GitSearch2>;
     cachedUsers: Array<{
         [query: string]: GitUsers
     }> = [];
@@ -20,9 +20,9 @@ export class GitSearchService {
 
      
 
-    gitSearch : Function = (query: string) : Observable<GitSearch> => {
+    gitSearch : Function = (query: string) : Observable<GitSearch2> => {
         if (!this.search) {
-            this.search = this.http.get<GitSearch>('https://api.github.com/search/repositories?q=' + query)
+            this.search = this.http.get<GitSearch2>('https://api.github.com/search/repositories?q=' + query)
             .publishReplay(1)
             .refCount();
             this.cachedValue = query;

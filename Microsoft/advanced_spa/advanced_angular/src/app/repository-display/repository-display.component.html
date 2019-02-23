@@ -6,6 +6,8 @@
       <small> by {{result.repository.owner.login | uppercase}}</small>
     </h4>
   </a>
+  <span class='favorite_icon' *ngIf="!result.favorited">&#9976;</span>
+  <span class='favorite_icon favorited' *ngIf="result.favorited">&#9976;</span>
   <p class="description"> {{result.description}}</p>
   <p> Created On: {{result.created_at | date:'fullDate'}} </p>
 </li>
