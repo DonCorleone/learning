@@ -10,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   templateUrl: './git-search.component.html',
   styleUrls: ['./git-search.component.css']
 })
-export class GitSearchComponent implements OnInit {
+export class GitSearchReactiveComponent implements OnInit {
   searchResults: GitSearch2;
   searchQuery: string;
   displayQuery: string;
