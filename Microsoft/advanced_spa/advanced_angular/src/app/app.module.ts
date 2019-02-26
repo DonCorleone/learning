@@ -15,6 +15,7 @@ import { DirectiveNameDirective } from './directive-name.directive';
 import { FavoriteTextPipe } from './favorite-text.pipe';
 import { RepositoryDisplayComponent } from './repository-display/repository-display.component';
 import { CodeDisplayComponent } from './code-display/code-display.component';
+import { FadeDirective } from './fade.directive';
 
 const appRoutes: Routes = [
   { path: '', 
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     DirectiveNameDirective,
     FavoriteTextPipe,
     RepositoryDisplayComponent,
-    CodeDisplayComponent
+    CodeDisplayComponent,
+    FadeDirective
   ],
   imports: [
     BrowserModule,
