@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mixins.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/*
+
+Atom One Dark by Daniel Gamage
+Original One Dark Syntax theme from https://github.com/atom/one-dark-syntax
+
+base:    #282c34
+mono-1:  #abb2bf
+mono-2:  #818896
+mono-3:  #5c6370
+hue-1:   #56b6c2
+hue-2:   #61aeee
+hue-3:   #c678dd
+hue-4:   #98c379
+hue-5:   #e06c75
+hue-5-2: #be5046
+hue-6:   #d19a66
+hue-6-2: #e6c07b
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #abb2bf;
+  background: #282c34;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #c678dd;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+
+.hljs-literal {
+  color: #56b6c2;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #98c379;
+}
+
+.hljs-built_in,
+.hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #d19a66;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #61aeee;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="mixins">Mixins</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Another way of building up classes from reusable components is to build them by combining or mixing simpler partial classes.
+Mixin sample</p>
+<p>In the code below, we show how you can model mixins in TypeScript. After the code, we'll break down how it works.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Disposable Mixin</span>
+<span class="hljs-keyword">class</span> Disposable {
+    isDisposed: <span class="hljs-built_in">boolean</span>;
+    dispose() {
+        <span class="hljs-keyword">this</span>.isDisposed = <span class="hljs-literal">true</span>;
+    }
+}
+
+<span class="hljs-comment">// Activatable Mixin</span>
+<span class="hljs-keyword">class</span> Activatable {
+    isActive: <span class="hljs-built_in">boolean</span>;
+    activate() {
+        <span class="hljs-keyword">this</span>.isActive = <span class="hljs-literal">true</span>;
+    }
+    deactivate() {
+        <span class="hljs-keyword">this</span>.isActive = <span class="hljs-literal">false</span>;
+    }
+}
+
+<span class="hljs-keyword">class</span> SmartObject <span class="hljs-keyword">implements</span> Disposable, Activatable {
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params"></span>) {
+        setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.isActive + <span class="hljs-string">" : "</span> + <span class="hljs-keyword">this</span>.isDisposed), <span class="hljs-number">500</span>);
+    }
+
+    interact() {
+        <span class="hljs-keyword">this</span>.activate();
+    }
+
+    <span class="hljs-comment">// Disposable</span>
+    isDisposed: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+    dispose: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+    <span class="hljs-comment">// Activatable</span>
+    isActive: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+    activate: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+    deactivate: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+}
+applyMixins(SmartObject, [Disposable, Activatable]);
+
+<span class="hljs-keyword">let</span> smartObj = <span class="hljs-keyword">new</span> SmartObject();
+setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> smartObj.interact(), <span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">////////////////////////////////////////</span>
+<span class="hljs-comment">// In your runtime library somewhere</span>
+<span class="hljs-comment">////////////////////////////////////////</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applyMixins</span>(<span class="hljs-params">derivedCtor: <span class="hljs-built_in">any</span>, baseCtors: <span class="hljs-built_in">any</span>[]</span>) </span>{
+    baseCtors.forEach(<span class="hljs-function"><span class="hljs-params">baseCtor</span> =&gt;</span> {
+        <span class="hljs-built_in">Object</span>.getOwnPropertyNames(baseCtor.prototype).forEach(<span class="hljs-function"><span class="hljs-params">name</span> =&gt;</span> {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
+}
+</div></code></pre>
+<p>Understanding the sample</p>
+<p>The code sample starts with the two classes that will act as our mixins. You can see each one is focused on a particular activity or capability. We'll later mix these together to form a new class from both capabilities.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Disposable Mixin</span>
+<span class="hljs-keyword">class</span> Disposable {
+    isDisposed: <span class="hljs-built_in">boolean</span>;
+    dispose() {
+        <span class="hljs-keyword">this</span>.isDisposed = <span class="hljs-literal">true</span>;
+    }
+
+}
+
+<span class="hljs-comment">// Activatable Mixin</span>
+<span class="hljs-keyword">class</span> Activatable {
+    isActive: <span class="hljs-built_in">boolean</span>;
+    activate() {
+        <span class="hljs-keyword">this</span>.isActive = <span class="hljs-literal">true</span>;
+    }
+    deactivate() {
+        <span class="hljs-keyword">this</span>.isActive = <span class="hljs-literal">false</span>;
+    }
+}
+</div></code></pre>
+<p>Next, we'll create the class that will handle the combination of the two mixins. Let's look at this in more detail to see how it does this:</p>
+<p><code>class SmartObject implements Disposable, Activatable {</code></p>
+<p>The first thing you may notice in the above is that instead of using extends, we use implements. This treats the classes as interfaces, and only uses the types behind Disposable and Activatable rather than the implementation. This means that we'll have to provide the implementation in class. Except, that's exactly what we want to avoid by using mixins.</p>
+<p>To satisfy this requirement, we create stand-in properties and their types for the members that will come from our mixins. This satisfies the compiler that these members will be available at runtime. This lets us still get the benefit of the mixins, albeit with some bookkeeping overhead.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Disposable</span>
+isDisposed: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+dispose: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+<span class="hljs-comment">// Activatable</span>
+isActive: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+activate: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+deactivate: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>;
+</div></code></pre>
+<p>Finally, we mix our mixins into the class, creating the full implementation.</p>
+<p><code>applyMixins(SmartObject, [Disposable, Activatable]);</code></p>
+<p>Lastly, we create a helper function that will do the mixing for us. This will run through the properties of each of the mixins and copy them over to the target of the mixins, filling out the stand-in properties with their implementations.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applyMixins</span>(<span class="hljs-params">derivedCtor: <span class="hljs-built_in">any</span>, baseCtors: <span class="hljs-built_in">any</span>[]</span>) </span>{
+    baseCtors.forEach(<span class="hljs-function"><span class="hljs-params">baseCtor</span> =&gt;</span> {
+        <span class="hljs-built_in">Object</span>.getOwnPropertyNames(baseCtor.prototype).forEach(<span class="hljs-function"><span class="hljs-params">name</span> =&gt;</span> {
+            derivedCtor.prototype[name] = baseCtor.prototype[name];
+        });
+    });
+}
+</div></code></pre>
+
+</body>
+</html>

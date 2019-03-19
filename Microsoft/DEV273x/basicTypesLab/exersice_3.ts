@@ -30,6 +30,16 @@ enum Colors{
     black   
 }
 
+function isNumber (x: any) : x is number{
+    return (typeof x) === 'number';
+}
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+let myIdentity: <T>(arg: T) => T = identity;
+
+
 class numericColor extends colorChanger {
 
     static Colors: Colors;
@@ -39,10 +49,10 @@ class numericColor extends colorChanger {
         (this.div as HTMLElement).style.width = squareSize2;
         (this.div as HTMLElement).style.height = squareSize2;
     }
-    changeColor(color:number) : boolean{
+    changeColor(color: number | string) : boolean{
         (this.div as HTMLElement).style.backgroundColor = Colors[color];
         return true;
-    }
+    }    
 }
 
 let getRandomNumber: Function = (min:number, max, number) => {
