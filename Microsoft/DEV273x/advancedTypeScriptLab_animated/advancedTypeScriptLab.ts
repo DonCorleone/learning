@@ -1,3 +1,11 @@
+
+function animated(constructor: any) {
+    constructor.prototype.animated = true;
+    return constructor;
+ }
+ 
+
+
 class genericClass<T>{
 
     private val: T;
@@ -13,29 +21,33 @@ class genericClass<T>{
 
 class Rotater {
     rotate (elem: HTMLElement) {
-        elem.style.transform = "rotate(-315deg)"
-    }
+        elem.style.transform = "rotate(-315deg)";
+    };
     rotateBack (elem: HTMLElement) {
-        elem.style.transform = ""
-    }
+        elem.style.transform = "";
+    };
+    
 }
 
 class Mover {
     move (elem: HTMLElement) {
-        elem.style.transform = "translateX(50px)"
-    }
+        elem.style.transform = "translateX(50px)";
+    };
     moveBack (elem: HTMLElement) {
-        elem.style.transform = ""
-    }
+        elem.style.transform = "";
+    };
+    
 }
-
+ 
+@animated
 class movingElement implements Rotater, Mover {
-    rotate: (elem: HTMLElement) => any;
-    move: (elem: HTMLElement) => any;
-    moveBack: (elem: HTMLElement) => any;
-    rotateBack: (elem: HTMLElement) => any;
-    element: HTMLElement;
-
+    rotate: (elem: HTMLElement) => any
+    move: (elem: HTMLElement) => any
+    moveBack: (elem: HTMLElement) => any
+    rotateBack: (elem: HTMLElement) => any
+    animated: false;
+    
+    element: HTMLElement
     constructor(elem: HTMLElement) {
         elem.onmousedown = () => {
             this.move(elem);
@@ -49,7 +61,9 @@ class movingElement implements Rotater, Mover {
         elem.onmouseout = () => {
             this.rotateBack(elem);
         }
-        
+        if (this.animated) {
+             elem.style.transition = "transform .5s ease"
+        }
         this.element = elem;
     }
 }

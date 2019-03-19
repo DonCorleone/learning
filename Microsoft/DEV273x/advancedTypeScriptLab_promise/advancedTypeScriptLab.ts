@@ -1,3 +1,11 @@
+
+function animated(constructor: any) {
+    constructor.prototype.animated = true;
+    return constructor;
+ }
+ 
+
+
 class genericClass<T>{
 
     private val: T;
@@ -13,29 +21,33 @@ class genericClass<T>{
 
 class Rotater {
     rotate (elem: HTMLElement) {
-        elem.style.transform = "rotate(-315deg)"
-    }
+        elem.style.transform = "rotate(-315deg)";
+    };
     rotateBack (elem: HTMLElement) {
-        elem.style.transform = ""
-    }
+        elem.style.transform = "";
+    };
+    
 }
 
 class Mover {
     move (elem: HTMLElement) {
-        elem.style.transform = "translateX(50px)"
-    }
+        elem.style.transform = "translateX(50px)";
+    };
     moveBack (elem: HTMLElement) {
-        elem.style.transform = ""
-    }
+        elem.style.transform = "";
+    };
+    
 }
-
+ 
+@animated
 class movingElement implements Rotater, Mover {
-    rotate: (elem: HTMLElement) => any;
-    move: (elem: HTMLElement) => any;
-    moveBack: (elem: HTMLElement) => any;
-    rotateBack: (elem: HTMLElement) => any;
-    element: HTMLElement;
-
+    rotate: (elem: HTMLElement) => any
+    move: (elem: HTMLElement) => any
+    moveBack: (elem: HTMLElement) => any
+    rotateBack: (elem: HTMLElement) => any
+    animated: false;
+    
+    element: HTMLElement
     constructor(elem: HTMLElement) {
         elem.onmousedown = () => {
             this.move(elem);
@@ -49,7 +61,9 @@ class movingElement implements Rotater, Mover {
         elem.onmouseout = () => {
             this.rotateBack(elem);
         }
-        
+        if (this.animated) {
+             elem.style.transition = "transform .5s ease"
+        }
         this.element = elem;
     }
 }
@@ -103,8 +117,18 @@ applyMixins(movingElement, [Mover, Rotater])
 for (let elem of standardElements) {
     elem.style.width = "60px"
     elem.style.height = "60px"
-    elem.style.backgroundColor = "green";
-    elem.style.margin = "5px";
-    let elemClass = new movingElement(elem);
-    document.body.appendChild(elemClass.element);
+    elem.style.margin = "5px"
+    let elemClass = new movingElement(elem);    
+    getAvatar_promise(elemClass.element);
+}
+
+function getAvatar_promise(elem: HTMLElement){
+    fetch('https://uinames.com/api/').then(function(response) {
+        return response.json();
+    }).then(function(response) {
+        alert('Hi! My name is ' + response.name);
+        let avatar = 'https://robohash.org/set_set3/'+ response.name +'?size=60x60';
+        elem.style.backgroundImage = 'url("' + avatar + '")';
+        document.body.appendChild(elem);
+    });
 }
